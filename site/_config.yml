@@ -1,0 +1,7 @@
+title: GovLens
+description: Read any Indian government portal in your language. Universal translation, navigation map, cross-language search.
+theme: null
+plugins: []
+exclude:
+  - README.md
+  - node_modules

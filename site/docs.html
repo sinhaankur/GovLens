@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GovLens — User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="docs.css" />
+</head>
+<body>
+
+<div class="tricolour"></div>
+
+<header class="nav">
+  <a class="logo" href="index.html">
+    <span class="logo-mark">GL</span>
+    <span class="logo-text">GovLens</span>
+  </a>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="docs.html" class="active">Guide</a>
+    <a href="privacy.html">Privacy</a>
+    <a class="cta-mini" href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="docs-shell">
+
+  <!-- TOC sidebar -->
+  <aside class="toc">
+    <div class="toc-label">CONTENTS</div>
+    <ol>
+      <li><a href="#install">1. Install</a></li>
+      <li><a href="#first-run">2. First run</a></li>
+      <li><a href="#translate">3. Translate any page</a></li>
+      <li><a href="#navigate">4. See the page map</a></li>
+      <li><a href="#search">5. Cross-language search</a></li>
+      <li><a href="#jargon">6. Jargon explainer</a></li>
+      <li><a href="#forms">7. Form auto-save</a></li>
+      <li><a href="#shortcuts">8. Shortcuts</a></li>
+      <li><a href="#trouble">9. Troubleshooting</a></li>
+    </ol>
+  </aside>
+
+  <!-- Body -->
+  <main class="docs-body">
+
+    <header class="docs-hero">
+      <span class="eyebrow">USER GUIDE</span>
+      <h1>How to use<br/><span class="hl-yellow">GovLens.</span></h1>
+      <p class="lede">Five-minute walkthrough. No prior knowledge. Works on any <code>.gov.in</code> portal.</p>
+    </header>
+
+    <!-- 1. Install -->
+    <section id="install">
+      <div class="step-tag">STEP 1</div>
+      <h2>Install the extension</h2>
+      <p>The extension isn't on the Chrome Web Store yet. Install it manually — takes 60 seconds.</p>
+      <ol class="numbered">
+        <li>Download or clone the repo: <code>git clone https://github.com/ankursinha/GovLens.git</code></li>
+        <li>Open <code>chrome://extensions</code> in Chrome.</li>
+        <li>Toggle <strong>Developer mode</strong> on (top right).</li>
+        <li>Click <strong>Load unpacked</strong> and pick the <code>govlens-extension</code> folder.</li>
+        <li>Pin the <strong>GL</strong> icon to your toolbar so it's always one click away.</li>
+      </ol>
+    </section>
+
+    <!-- 2. First run -->
+    <section id="first-run">
+      <div class="step-tag">STEP 2</div>
+      <h2>Open the side panel</h2>
+      <p>Visit any <code>.gov.in</code> or <code>.nic.in</code> page. A green <strong>✓</strong> badge appears on the GL icon — that means the extension recognised the site. Click the icon. The side panel opens on the right.</p>
+
+      <div class="callout green">
+        <div class="callout-icon">💡</div>
+        <div>
+          <strong>Three engines, tried in order — no setup for 99% of users:</strong>
+          <ul>
+            <li><span class="badge-inline green">On-device AI</span> — free, private, runs on your machine (Chrome 138+).</li>
+            <li><span class="badge-inline" style="background:#ffd91a;color:#0d0d0d;border-color:#0d0d0d;">Google Translate</span> — free, internet-based, no key needed.</li>
+            <li><span class="badge-inline" style="background:#1855d6;color:#fff;border-color:#1855d6;">Anthropic Cloud</span> — premium, your API key, highest quality.</li>
+          </ul>
+          The status strip shows which engine answered the last call.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Translate -->
+    <section id="translate">
+      <div class="step-tag">STEP 3</div>
+      <h2>Translate any page</h2>
+
+      <div class="visual">
+        <div class="visual-mock">
+          <div class="vm-header">
+            <span class="vm-tab active">🌐 TRANSLATE</span>
+            <span class="vm-tab">🗺 NAVIGATE</span>
+            <span class="vm-tab">🔍 SEARCH</span>
+          </div>
+          <div class="vm-body">
+            <div class="vm-card">
+              <div class="vm-label">PAGE LANGUAGE</div>
+              <div class="vm-row"><span class="chip">HINDI</span> <span class="arrow">→</span> <select disabled><option>English</option></select></div>
+            </div>
+            <button class="vm-btn primary">TRANSLATE PAGE</button>
+            <button class="vm-btn">TRANSLATE SELECTION ONLY</button>
+            <button class="vm-btn ghost">↩ RESTORE ORIGINAL</button>
+          </div>
+        </div>
+      </div>
+
+      <ol class="numbered">
+        <li>The Translate tab is open by default.</li>
+        <li>The detected page language shows on the left.</li>
+        <li>Pick your target language from the dropdown — 22+ Indian + international options, or type your own.</li>
+        <li>Click <strong>TRANSLATE PAGE</strong>. The page text gets replaced in-place; layout stays intact.</li>
+        <li>Click <strong>RESTORE ORIGINAL</strong> any time to revert.</li>
+        <li><strong>TRANSLATE SELECTION ONLY</strong> — highlight text on the page, then click this for a quick popover translation.</li>
+      </ol>
+
+      <div class="callout">
+        <div class="callout-icon">🧠</div>
+        <div>
+          <strong>Quick tools, same tab:</strong>
+          <ul>
+            <li><code>📝 SUMMARISE PAGE</code> — three-section summary: what it's for, key actions, documents needed.</li>
+            <li><code>💡 EXPLAIN IN PLAIN ENGLISH</code> — rewrites the page text under 250 words, no jargon.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Navigate -->
+    <section id="navigate">
+      <div class="step-tag">STEP 4</div>
+      <h2>See the page map</h2>
+      <p>Switch to the <strong>🗺 NAVIGATE</strong> tab. The whole page is laid out in one pane.</p>
+
+      <div class="kv-grid">
+        <div class="kv">
+          <div class="k">📍 Breadcrumbs</div>
+          <div class="v">Where you are in the site hierarchy.</div>
+        </div>
+        <div class="kv">
+          <div class="k">📑 Sections</div>
+          <div class="v">All H1–H4 headings, in order. Click → scroll there + flash highlight.</div>
+        </div>
+        <div class="kv">
+          <div class="k">📋 Forms</div>
+          <div class="v">Every form on the page with field count and submit URL. Click → jump to it.</div>
+        </div>
+        <div class="kv">
+          <div class="k">📄 Documents</div>
+          <div class="v">All PDFs, DOCs, XLSs, ZIPs. One click to open.</div>
+        </div>
+        <div class="kv">
+          <div class="k">🔗 Nav menus</div>
+          <div class="v">Every site nav block, expandable to see all child links.</div>
+        </div>
+      </div>
+
+      <p>The top of the tab also shows: <strong>sections</strong>, <strong>forms</strong>, <strong>docs</strong>, <strong>links</strong> — at-a-glance counts.</p>
+    </section>
+
+    <!-- 5. Search -->
+    <section id="search">
+      <div class="step-tag">STEP 5</div>
+      <h2>Cross-language search with jump-and-highlight</h2>
+
+      <div class="visual">
+        <div class="visual-mock">
+          <div class="vm-header">
+            <span class="vm-tab">🌐 TRANSLATE</span>
+            <span class="vm-tab">🗺 NAVIGATE</span>
+            <span class="vm-tab active">🔍 SEARCH</span>
+          </div>
+          <div class="vm-body">
+            <div class="vm-row"><input class="vm-input" value="income tax deduction" /><button class="vm-btn small primary">GO</button></div>
+            <div class="vm-check"><input type="checkbox" checked /> CROSS-LANGUAGE SEARCH</div>
+            <div class="vm-result">
+              <div class="vm-rt"><span class="vm-tag">#1</span> Section 80C deductions</div>
+              <div class="vm-rc">…allowable <mark>deduction</mark> under section 80C up to ₹1.5 lakh per year…</div>
+              <div class="vm-rj">▶ JUMP TO MATCH</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ol class="numbered">
+        <li>Type your query in <strong>any language</strong>. English query, Hindi page — works.</li>
+        <li>Tick <strong>CROSS-LANGUAGE SEARCH</strong> if the page is in another language. Your query gets translated to the page's language first.</li>
+        <li>Hit <strong>GO</strong> or press <strong>Enter</strong>.</li>
+        <li>Each result shows the section it came from + a context snippet with your query in <mark style="background:#ffd91a;padding:0 3px;">yellow</mark>.</li>
+        <li>Click any result. The tab focuses, the page scrolls to that exact occurrence, and the match <strong>pulses red for 4 seconds</strong>.</li>
+      </ol>
+
+      <div class="callout green">
+        <div class="callout-icon">⚡</div>
+        <div>
+          The pulse jumps to <em>occurrence #N</em>, not the first match. So if there are 12 hits and you click result #7, you go straight to the 7th occurrence on the page.
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Jargon -->
+    <section id="jargon">
+      <div class="step-tag">FEATURE</div>
+      <h2>Jargon explainer</h2>
+      <p>Hover any acronym on the page — <code>PAN</code>, <code>GST</code>, <code>PMJAY</code>, <code>NCLT</code>, <code>FEMA</code>, <code>CGHS</code>, <code>EPF</code>, <code>NREGA</code> — and a tooltip appears with the full form and a one-line explanation. 80+ terms ship built-in.</p>
+
+      <div class="callout">
+        <div class="callout-icon">🎨</div>
+        <div>
+          Jargon terms get a soft yellow highlight with a dotted underline. Subtle enough not to clutter the page; obvious enough to know it's clickable.
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Forms -->
+    <section id="forms">
+      <div class="step-tag">FEATURE</div>
+      <h2>Form auto-save (lifesaver)</h2>
+      <p>Gov sites time you out at the worst possible moment. GovLens silently saves every keystroke into form fields to your browser's local storage.</p>
+      <ol class="numbered">
+        <li>Type into any form on a gov page. Saving is automatic — no confirmation dialog.</li>
+        <li>If your session dies and the page reloads, GovLens detects the saved draft and shows a yellow banner at the top.</li>
+        <li>Click <strong>RESTORE</strong> to refill every field with what you'd typed before. <strong>DISMISS</strong> deletes the draft.</li>
+      </ol>
+      <div class="callout yellow">
+        <div class="callout-icon">🔒</div>
+        <div>
+          Passwords, OTPs, captchas, and file inputs are <strong>never saved</strong>. Drafts live in your browser only — they never leave your machine.
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Shortcuts -->
+    <section id="shortcuts">
+      <div class="step-tag">FEATURE</div>
+      <h2>The floating search bar</h2>
+      <p>A small <strong>GL</strong> search bar sits in the bottom-right corner of every gov page. Type to highlight matches in yellow, use <strong>↑/↓</strong> to step through them. Active match goes red. <strong>✕</strong> hides it.</p>
+      <p>Don't want it? Settings (⚙) → Features → toggle off <strong>Show in-page floating toolbar</strong>.</p>
+    </section>
+
+    <!-- 9. Troubleshooting -->
+    <section id="trouble">
+      <div class="step-tag">HELP</div>
+      <h2>Troubleshooting</h2>
+
+      <details class="trouble">
+        <summary>The side panel shows "Cloud fallback needed"</summary>
+        <p>Your browser doesn't have on-device translation for that language pair yet (or model isn't downloaded). Two options: (a) try a different target language; English-as-pivot usually works, or (b) add an Anthropic API key in Settings.</p>
+      </details>
+      <details class="trouble">
+        <summary>The translation looks slightly off</summary>
+        <p>The on-device Translator API trades quality for privacy and speed. For higher quality, set up an Anthropic API key — Claude Haiku gives noticeably better gov-jargon translations.</p>
+      </details>
+      <details class="trouble">
+        <summary>"Could not read page" on Navigate tab</summary>
+        <p>The page may not have finished loading, or it's a Chrome system page (extensions can't read those). Refresh the gov page and reopen the side panel.</p>
+      </details>
+      <details class="trouble">
+        <summary>Search shows no results but the word is on the page</summary>
+        <p>If the page is in another language, tick <strong>CROSS-LANGUAGE SEARCH</strong>. Your query will be translated before searching.</p>
+      </details>
+      <details class="trouble">
+        <summary>How do I uninstall?</summary>
+        <p><code>chrome://extensions</code> → find GovLens → <strong>Remove</strong>. All local storage, drafts, and your API key are wiped.</p>
+      </details>
+    </section>
+
+    <div class="end-cta">
+      <h3>That's everything. Go save someone's afternoon.</h3>
+      <a class="btn primary" href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GET ON GITHUB ↗</a>
+    </div>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">
+        <span class="logo-mark">GL</span><span>GovLens</span>
+      </div>
+      <p class="foot-tag">For the bureaucratic web. Free forever.</p>
+    </div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Guide</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 GovLens</span>
+    <span>Not affiliated with the Government of India</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

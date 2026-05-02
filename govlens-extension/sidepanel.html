@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GovLens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+
+<!-- TRICOLOUR STRIPE -->
+<div class="tricolour"></div>
+
+<!-- HEADER -->
+<header class="brand-header">
+  <div class="brand-block">
+    <div class="brand-logo">GL</div>
+    <div class="brand-text">
+      <h1>GovLens</h1>
+      <p>Universal Government Portal Reader</p>
+    </div>
+  </div>
+  <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
+</header>
+
+<!-- STATUS STRIP -->
+<div class="status-strip" id="statusStrip" role="status" aria-live="polite" aria-atomic="true">
+  <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+  <span id="statusText">Checking site…</span>
+  <span class="status-divider" aria-hidden="true"></span>
+  <span class="engine-badge" id="engineBadge" title="AI engine in use" aria-label="Active AI engine">—</span>
+  <span class="status-lang" id="detectedLang">Lang: —</span>
+</div>
+
+<!-- PILLAR TABS -->
+<nav class="pillar-tabs four-tabs" role="tablist">
+  <button class="pillar-tab active" data-tab="translate" role="tab"><span class="t-icon">🌐</span><span>TRANSLATE</span></button>
+  <button class="pillar-tab" data-tab="navigate" role="tab"><span class="t-icon">🗺</span><span>NAVIGATE</span></button>
+  <button class="pillar-tab" data-tab="search" role="tab"><span class="t-icon">🔍</span><span>SEARCH</span></button>
+  <button class="pillar-tab" data-tab="score" role="tab"><span class="t-icon">📊</span><span>SCORE</span></button>
+</nav>
+
+<main>
+
+<!-- ============== TRANSLATE PANEL ============== -->
+<section class="panel active" id="panel-translate" role="tabpanel">
+
+  <div class="card">
+    <div class="card-label">PAGE LANGUAGE</div>
+    <div class="lang-row">
+      <div class="lang-chip" id="srcLangChip">— DETECTING —</div>
+      <span class="arrow">→</span>
+      <div class="lang-picker" data-langpicker data-default="en">
+        <button class="lp-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Translate to">
+          <span class="lp-trigger-label">English</span>
+          <span class="lp-trigger-arrow" aria-hidden="true">▼</span>
+        </button>
+        <input type="hidden" id="targetLang" value="en" />
+        <div class="lp-pop" role="dialog" hidden>
+          <input class="lp-search" type="text" placeholder="Search 100+ languages…" aria-label="Search languages" />
+          <ul class="lp-list" role="listbox" aria-label="Languages"></ul>
+          <div class="lp-foot">
+            <span class="lp-foot-tip">↑↓ navigate · Enter select · Esc close</span>
+            <button type="button" class="lp-custom" id="customLangBtn">+ Custom language…</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="text" id="customLang" class="text-input" placeholder="Type any language…" style="display:none;margin-top:8px;" />
+    <div class="engine-predict" id="enginePredict" aria-live="polite">
+      Will use: <span class="engine-predict-tag" id="enginePredictTag">—</span>
+    </div>
+  </div>
+
+  <button class="brutal-btn primary" id="translatePageBtn">
+    <span>TRANSLATE PAGE</span>
+  </button>
+
+  <button class="brutal-btn secondary" id="translateSelectionBtn">
+    TRANSLATE SELECTION ONLY
+  </button>
+
+  <button class="brutal-btn ghost" id="restoreOriginalBtn" style="display:none;">
+    ↩ RESTORE ORIGINAL
+  </button>
+
+  <div class="card translate-status" id="translateStatus" style="display:none;">
+    <div class="card-label">STATUS</div>
+    <div class="ts-text" id="tsText">Idle</div>
+    <div class="ts-bar"><div class="ts-fill" id="tsFill"></div></div>
+  </div>
+
+  <div class="card" id="apiKeyMissing" style="display:none;">
+    <div class="card-label warn">PREMIUM FALLBACK</div>
+    <p class="card-body">Both free engines failed for this language. Add an Anthropic API key for premium translation. Stored locally only.</p>
+    <button class="brutal-btn small" id="openSettingsFromTranslate">OPEN SETTINGS →</button>
+  </div>
+
+  <div class="card">
+    <div class="card-label">QUICK TOOLS</div>
+    <button class="brutal-btn small" id="summarizeBtn">📝 SUMMARISE PAGE</button>
+    <button class="brutal-btn small" id="explainBtn">💡 EXPLAIN IN PLAIN ENGLISH</button>
+  </div>
+
+  <div class="card" id="aiOutCard" style="display:none;">
+    <div class="card-label" id="aiOutLabel">OUTPUT</div>
+    <div class="ai-output" id="aiOutput"></div>
+  </div>
+
+</section>
+
+<!-- ============== NAVIGATE PANEL ============== -->
+<section class="panel" id="panel-navigate" role="tabpanel">
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="statHeadings">0</div><div class="stat-lbl">SECTIONS</div></div>
+    <div class="stat-card"><div class="stat-num" id="statForms">0</div><div class="stat-lbl">FORMS</div></div>
+    <div class="stat-card"><div class="stat-num" id="statDocs">0</div><div class="stat-lbl">DOCS</div></div>
+    <div class="stat-card"><div class="stat-num" id="statLinks">0</div><div class="stat-lbl">LINKS</div></div>
+  </div>
+
+  <div class="ia-section">
+    <h3 class="ia-heading">📍 BREADCRUMBS</h3>
+    <div class="ia-list" id="iaBreadcrumbs"><div class="empty">No breadcrumbs found</div></div>
+  </div>
+
+  <div class="ia-section">
+    <h3 class="ia-heading">📑 PAGE SECTIONS</h3>
+    <div class="ia-list" id="iaSections"><div class="empty">Loading…</div></div>
+  </div>
+
+  <div class="ia-section">
+    <h3 class="ia-heading">📋 FORMS ON THIS PAGE</h3>
+    <div class="ia-list" id="iaForms"><div class="empty">No forms</div></div>
+  </div>
+
+  <div class="ia-section">
+    <h3 class="ia-heading">📄 DOWNLOADABLE DOCS</h3>
+    <div class="ia-list" id="iaDocs"><div class="empty">No documents linked</div></div>
+  </div>
+
+  <div class="ia-section">
+    <h3 class="ia-heading">🔗 NAVIGATION MENUS</h3>
+    <div class="ia-list" id="iaNav"><div class="empty">No nav menus detected</div></div>
+  </div>
+
+</section>
+
+<!-- ============== SEARCH PANEL ============== -->
+<section class="panel" id="panel-search" role="tabpanel">
+
+  <div class="search-box">
+    <input type="text" id="searchInput" class="text-input big" placeholder="Search this page…" />
+    <button class="brutal-btn primary search-go" id="searchBtn">GO</button>
+  </div>
+
+  <label class="checkbox-row">
+    <input type="checkbox" id="crossLangSearch" />
+    <span>CROSS-LANGUAGE SEARCH (translate query first)</span>
+  </label>
+
+  <div class="search-meta" id="searchMeta"></div>
+
+  <div class="results-list" id="searchResults">
+    <div class="empty">Type something and hit GO.<br/>Click any result to jump and highlight on the page.</div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ============== SCORE PANEL ============== -->
+<section class="panel" id="panel-score" role="tabpanel">
+
+  <div class="score-hero" id="scoreHero">
+    <div class="score-circle" id="scoreCircle">
+      <div class="score-num" id="scoreNum">—</div>
+      <div class="score-grade" id="scoreGrade"></div>
+    </div>
+    <div class="score-meta">
+      <div class="score-label">SITE USABILITY SCORE</div>
+      <div class="score-tagline" id="scoreTagline">Click ANALYSE to grade this page.</div>
+      <button class="brutal-btn primary" id="analyseBtn">⚡ ANALYSE THIS PAGE</button>
+    </div>
+  </div>
+
+  <div class="score-axes" id="scoreAxes" style="display:none;"></div>
+
+  <div class="score-issues-section" id="scoreIssuesSection" style="display:none;">
+    <h3 class="ia-heading">🚩 TOP ISSUES</h3>
+    <div class="score-issues" id="scoreIssues"></div>
+  </div>
+
+  <div class="score-history-section" id="scoreHistorySection" style="display:none;">
+    <div class="score-history-header">
+      <h3 class="ia-heading">📈 SCORE HISTORY</h3>
+      <button class="brutal-btn small ghost" id="clearHistoryBtn" style="width:auto;padding:4px 10px;margin:0;font-size:10px;">CLEAR</button>
+    </div>
+    <div class="score-history" id="scoreHistory"></div>
+  </div>
+
+  <p class="score-disclaimer" id="scoreDisclaimer" style="display:none;">
+    Score is based on observable HTML — structure, semantics, accessibility hints. It does not measure content quality. Use it as a quick sniff test, not a final judgement.
+  </p>
+
+</section>
+
+<!-- ============== SETTINGS DRAWER ============== -->
+<div class="drawer" id="settingsDrawer">
+  <div class="drawer-header">
+    <h2>SETTINGS</h2>
+    <button class="icon-btn" id="closeSettings" aria-label="Close">✕</button>
+  </div>
+  <div class="drawer-body">
+
+    <div class="card">
+      <div class="card-label">AI ENGINES</div>
+      <p class="card-body">
+        Three tiers, tried in order until one works:<br/>
+        <b>1. Built-in AI</b> — free, on-device, private (Chrome 138+)<br/>
+        <b>2. Google Translate</b> — free, internet, no key needed<br/>
+        <b>3. Anthropic</b> — premium, your API key
+      </p>
+      <p class="card-body" id="builtinStatus" style="font-family:'Space Mono',monospace;font-size:11px;">
+        Checking on-device support…
+      </p>
+      <label class="checkbox-row" style="margin-top:8px;">
+        <input type="checkbox" id="optGoogle" checked />
+        <span>Use Google Translate when on-device fails</span>
+      </label>
+    </div>
+
+    <div class="card">
+      <div class="card-label">ANTHROPIC API KEY <span style="opacity:0.7;font-weight:400;">(optional)</span></div>
+      <p class="card-body">Stored in this browser only — never sent anywhere except api.anthropic.com.</p>
+      <input type="password" id="apiKeyInput" class="text-input" placeholder="sk-ant-…" />
+      <button class="brutal-btn small" id="saveKeyBtn">SAVE KEY</button>
+      <span class="key-status" id="keyStatus"></span>
+    </div>
+
+    <div class="card">
+      <div class="card-label">DEFAULT TARGET LANGUAGE</div>
+      <div class="lang-picker" data-langpicker data-default="en">
+        <button class="lp-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Default target language">
+          <span class="lp-trigger-label">English</span>
+          <span class="lp-trigger-arrow" aria-hidden="true">▼</span>
+        </button>
+        <input type="hidden" id="defaultLang" value="en" />
+        <div class="lp-pop" role="dialog" hidden>
+          <input class="lp-search" type="text" placeholder="Search 100+ languages…" aria-label="Search languages" />
+          <ul class="lp-list" role="listbox" aria-label="Languages"></ul>
+          <div class="lp-foot">
+            <span class="lp-foot-tip">↑↓ navigate · Enter select · Esc close</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">FEATURES</div>
+      <label class="checkbox-row"><input type="checkbox" id="optJargon" checked /><span>Highlight jargon (PAN, GST, PMJAY…)</span></label>
+      <label class="checkbox-row"><input type="checkbox" id="optFormSave" checked /><span>Auto-save form drafts</span></label>
+      <label class="checkbox-row"><input type="checkbox" id="optToolbar" checked /><span>Show in-page floating toolbar</span></label>
+    </div>
+
+    <div class="card">
+      <div class="card-label">ABOUT</div>
+      <p class="card-body">GovLens v2.0.0 — built for the bureaucratic web.<br/>No tracking. No analytics. Local-first.</p>
+    </div>
+
+  </div>
+</div>
+<div class="drawer-scrim" id="drawerScrim"></div>
+
+<script src="regions.js"></script>
+<script src="scoring.js"></script>
+<script src="langpicker.js"></script>
+<script src="sidepanel.js"></script>
+</body>
+</html>

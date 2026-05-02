@@ -1,0 +1,23 @@
+# Build artifacts
+*.zip
+submission/govlens-*.zip
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (in case Pages tooling adds it later)
+node_modules/
+
+# Local Claude / agent caches (kept out of public repo)
+.claude/
+
+# Python build cache (icon generator)
+__pycache__/
+*.pyc

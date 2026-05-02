@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="GovLens — read any government portal in your language. Universal translation, navigation map, cross-language search. Works in 25+ countries." />
+<title>GovLens — Universal reader for government portals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="tricolour"></div>
+
+<header class="nav">
+  <a class="logo" href="#top">
+    <span class="logo-mark">GL</span>
+    <span class="logo-text">GovLens</span>
+  </a>
+  <nav class="nav-links">
+    <a href="#pillars">Pillars</a>
+    <a href="#features">Features</a>
+    <a href="docs.html">Guide</a>
+    <a href="privacy.html">Privacy</a>
+    <a class="cta-mini" href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">CHROME EXTENSION · v2.0</span>
+      <h1>The bureaucratic web,<br/><span class="hl-yellow">finally readable.</span></h1>
+      <p class="lede">
+        GovLens overlays a universal reader on top of government portals — Indian
+        <code>.gov.in</code>, UK <code>.gov.uk</code>, US <code>.gov</code>, EU,
+        Canada, Australia and 20+ more. Translate any page into your language.
+        See its full structure. Search across languages, jump to the exact match.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#install">INSTALL — IT'S FREE</a>
+        <a class="btn ghost" href="#pillars">SEE HOW IT WORKS</a>
+      </div>
+      <div class="trust-row">
+        <span>🌍 25+ countries supported</span>
+        <span>🔒 Local-first, free engines included</span>
+        <span>0 trackers</span>
+      </div>
+    </div>
+
+    <!-- mock-up panel -->
+    <div class="hero-mock">
+      <div class="mock-window">
+        <div class="mock-bar">
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-dot"></span>
+          <span class="mock-url">income​tax.gov.in/​itr-filing</span>
+        </div>
+        <div class="mock-body">
+          <div class="mock-page">
+            <p class="mock-h">आयकर रिटर्न दाखिल करें</p>
+            <p class="mock-p">पैन और आधार लिंक की पुष्टि के बाद ITR-1 फॉर्म...</p>
+            <p class="mock-p">यदि आप वेतनभोगी हैं, अपनी 26AS फॉर्म...</p>
+          </div>
+          <div class="mock-side">
+            <div class="mock-card mock-yellow">
+              <div class="mock-tag">TRANSLATE</div>
+              <div class="mock-row">हिन्दी → ENGLISH</div>
+              <div class="mock-progress"><span></span></div>
+            </div>
+            <div class="mock-card">
+              <div class="mock-tag tag-blue">NAVIGATE</div>
+              <div class="mock-li">📑 4 SECTIONS</div>
+              <div class="mock-li">📋 1 FORM (12 fields)</div>
+              <div class="mock-li">📄 3 PDFS</div>
+            </div>
+            <div class="mock-card mock-red">
+              <div class="mock-tag tag-yellow">SEARCH</div>
+              <div class="mock-li">"deduction 80C"</div>
+              <div class="mock-li small">2 matches → JUMP ▶</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE PILLARS -->
+<section class="section" id="pillars">
+  <span class="eyebrow center">THREE PILLARS</span>
+  <h2 class="section-title">Built for the parts gov sites get wrong.</h2>
+
+  <div class="pillars-grid">
+
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon">🌐</div>
+      <h3>Universal Translation</h3>
+      <p>Auto-detects the page language — Hindi, Tamil, Bengali, Marathi, Telugu, Gujarati, Kannada, Malayalam, Punjabi, Odia, Urdu, Assamese, English. Translate the whole page or just a selection, into any of 22+ target languages. Your AI key, your control.</p>
+      <ul>
+        <li>Detects page script (Devanagari, Tamil, Bengali…)</li>
+        <li>In-place translation — keeps layout intact</li>
+        <li>One-click restore to original</li>
+      </ul>
+    </div>
+
+    <div class="pillar-card alt">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon">🗺</div>
+      <h3>Navigation Sidebar</h3>
+      <p>Every gov page exposes its information architecture in one panel: sections, forms (with field counts), downloadable docs, navigation menus, breadcrumbs. Click anything to scroll right to it with a flash highlight.</p>
+      <ul>
+        <li>Outline of all H1–H4 sections</li>
+        <li>Forms with field counts and submit URLs</li>
+        <li>Every PDF / DOC / XLS in one list</li>
+      </ul>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon">🔍</div>
+      <h3>Cross-Language Search</h3>
+      <p>Search "income tax deduction" — your query gets translated to the page's language automatically. Every result shows the section it came from. Click to jump and pulse-highlight the exact sentence on the page.</p>
+      <ul>
+        <li>Translates query to the page's language</li>
+        <li>Shows section context for each hit</li>
+        <li>Click → scroll + pulse the exact match</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section dark" id="features">
+  <span class="eyebrow center yellow">EVERYTHING ELSE</span>
+  <h2 class="section-title light">Quality-of-life upgrades for the long haul.</h2>
+
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-icon">💡</div>
+      <h4>Jargon explainer</h4>
+      <p>PAN, GSTIN, PMJAY, NCLT, FEMA — hover any acronym for a plain-English explanation. 80+ terms ship built-in.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">💾</div>
+      <h4>Form auto-save</h4>
+      <p>Every keystroke into a form field is saved locally. Session timed out? Restore your draft with one click.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">📝</div>
+      <h4>AI summarise</h4>
+      <p>One-line summary, what it's for, key actions, documents needed. Works in any of 22+ languages.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔎</div>
+      <h4>Floating Ctrl+F bar</h4>
+      <p>An always-on retro search bar in the corner of every gov page. Match counter, prev/next, instant.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">📋</div>
+      <h4>Doc list</h4>
+      <p>All PDFs, DOCXs, XLSs, ZIPs on the page in one filter-able list. One click to open.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔒</div>
+      <h4>Local-first</h4>
+      <p>No tracking. No analytics. Your API key stays in your browser. Translation calls go directly to Anthropic.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL -->
+<section class="section" id="install">
+  <span class="eyebrow center">INSTALL IN 60 SECONDS</span>
+  <h2 class="section-title">Three steps, no account.</h2>
+
+  <ol class="install-steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Download the extension</h3>
+        <p>Clone or download this repo. The extension lives at <code>govlens-extension/</code>.</p>
+        <pre><code>git clone https://github.com/ankursinha/GovLens.git</code></pre>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Load it into Chrome</h3>
+        <p>Open <code>chrome://extensions</code> → enable <strong>Developer mode</strong> → click <strong>Load unpacked</strong> → pick the <code>govlens-extension</code> folder.</p>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Add your API key</h3>
+        <p>Click the GovLens icon → Settings (⚙) → paste an Anthropic API key. Get one at <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com ↗</a>. Translations and summaries cost fractions of a cent each.</p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="cta-banner">
+    <div>
+      <h3>That's it. Visit any <code>.gov.in</code> site and click GL.</h3>
+    </div>
+    <a class="btn primary" href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GET ON GITHUB ↗</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <span class="eyebrow center">FAQ</span>
+  <h2 class="section-title">Questions you'll have.</h2>
+
+  <div class="faq-list">
+    <details>
+      <summary>Why do I need to bring my own API key?</summary>
+      <p>Translation and summarisation use AI. Running this on a server we control would mean your page text passes through us. Local-first means your text only goes between you and the AI provider, with no GovLens server in the middle. The cost is on you, but it's tiny — a few rupees per page.</p>
+    </details>
+    <details>
+      <summary>Which countries are supported?</summary>
+      <p>India (<code>.gov.in</code>, <code>.nic.in</code>), UK (<code>.gov.uk</code>), USA (<code>.gov</code>, <code>.mil</code>), Canada (<code>.gc.ca</code>, <code>.canada.ca</code>), Australia (<code>.gov.au</code>), New Zealand (<code>.govt.nz</code>), Singapore, South Africa, Ireland, EU, France, Germany, Italy, Spain, Mexico, Brazil, Chile, Peru, Argentina, Japan, China, Pakistan, Bangladesh, Sri Lanka, Nepal. State / regional gov sites within these countries work the same as central ones — Indian state portals (often the worst-built) get full support.</p>
+    </details>
+    <details>
+      <summary>Does this work on Indian state government sites?</summary>
+      <p>Yes — and it's specifically designed for them. State portals (<code>karnataka.gov.in</code>, <code>kerala.gov.in</code>, <code>up.gov.in</code>, etc.) tend to have the worst UX of any gov sites in India. GovLens handles their messy markup, regional-language-only text, and broken navigation as well as it does central portals.</p>
+    </details>
+    <details>
+      <summary>Will this break gov sites that already work?</summary>
+      <p>The extension reads the page and overlays UI in a side panel — it doesn't modify the page unless you ask it to (e.g. translate). One-click restore puts everything back to original. The only always-on additions are: a small floating search bar, dotted underlines on jargon, and a draft restore banner if a saved form is detected.</p>
+    </details>
+    <details>
+      <summary>What languages can I translate into?</summary>
+      <p>22 official languages of India + several international ones (Spanish, French, German, Arabic, Chinese, Japanese, Russian, Portuguese). You can also type any custom language name.</p>
+    </details>
+    <details>
+      <summary>Is this affiliated with the Government of India?</summary>
+      <p>No. GovLens is an independent, free, open-source project built to make public-sector portals more accessible. It is not endorsed by any ministry or department.</p>
+    </details>
+    <details>
+      <summary>Is it on the Chrome Web Store?</summary>
+      <p>Not yet. Until then, install it via Developer mode (see above) — it's a normal MV3 extension.</p>
+    </details>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-grid">
+    <div>
+      <div class="foot-logo">
+        <span class="logo-mark">GL</span>
+        <span>GovLens</span>
+      </div>
+      <p class="foot-tag">For the bureaucratic web. Free forever.</p>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/ankursinha/GovLens" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://github.com/ankursinha/GovLens/issues" target="_blank" rel="noopener">Issues ↗</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 GovLens</span>
+    <span>Not affiliated with the Government of India</span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
