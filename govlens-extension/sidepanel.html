@@ -50,22 +50,23 @@
 
   <div class="card">
     <div class="card-label">PAGE LANGUAGE</div>
-    <div class="lang-row">
+    <div class="lang-source-row">
       <div class="lang-chip" id="srcLangChip">— DETECTING —</div>
-      <span class="arrow">→</span>
-      <div class="lang-picker" data-langpicker data-default="en">
-        <button class="lp-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Translate to">
-          <span class="lp-trigger-label">English</span>
-          <span class="lp-trigger-arrow" aria-hidden="true">▼</span>
-        </button>
-        <input type="hidden" id="targetLang" value="en" />
-        <div class="lp-pop" role="dialog" hidden>
-          <input class="lp-search" type="text" placeholder="Search 100+ languages…" aria-label="Search languages" />
-          <ul class="lp-list" role="listbox" aria-label="Languages"></ul>
-          <div class="lp-foot">
-            <span class="lp-foot-tip">↑↓ navigate · Enter select · Esc close</span>
-            <button type="button" class="lp-custom" id="customLangBtn">+ Custom language…</button>
-          </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <span class="target-hint">TRANSLATE TO</span>
+    </div>
+    <div class="lang-picker" data-langpicker data-default="en">
+      <button class="lp-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Translate to">
+        <span class="lp-trigger-label">English</span>
+        <span class="lp-trigger-arrow" aria-hidden="true">▼</span>
+      </button>
+      <input type="hidden" id="targetLang" value="en" />
+      <div class="lp-pop" role="dialog" hidden>
+        <input class="lp-search" type="text" placeholder="Search 100+ languages…" aria-label="Search languages" />
+        <ul class="lp-list" role="listbox" aria-label="Languages"></ul>
+        <div class="lp-foot">
+          <span class="lp-foot-tip">↑↓ navigate · Enter select · Esc close</span>
+          <button type="button" class="lp-custom" id="customLangBtn">+ Custom language…</button>
         </div>
       </div>
     </div>

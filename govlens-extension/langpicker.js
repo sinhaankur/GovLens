@@ -240,19 +240,66 @@
       pop.hidden = false;
       trigger.setAttribute('aria-expanded', 'true');
       render('');
-      // focus search and animate in
+      // Position the popover via JS — position:fixed escapes any parent overflow
+      // or stacking context, so the popover always renders correctly even when
+      // the trigger sits inside a clipped card.
+      positionPop();
+      // Reposition on scroll/resize while open so popover follows the trigger.
+      window.addEventListener('scroll', positionPop, true);
+      window.addEventListener('resize', positionPop);
       requestAnimationFrame(() => {
         pop.classList.add('open');
         search.value = '';
-        search.focus();
+        // Focus AFTER the spring animation has just started — feels snappier.
+        setTimeout(() => search.focus(), 30);
       });
     }
     function closePop() {
       pop.classList.remove('open');
       trigger.setAttribute('aria-expanded', 'false');
       activeIndex = -1;
+      window.removeEventListener('scroll', positionPop, true);
+      window.removeEventListener('resize', positionPop);
       // wait for transition before hiding to avoid focus jump
-      setTimeout(() => { pop.hidden = true; }, 150);
+      setTimeout(() => { pop.hidden = true; }, 200);
+    }
+
+    // Position the fixed-position popover beneath the trigger. Clamps to the
+    // visible viewport: if there's not enough room below, places it above; if
+    // it would overflow horizontally, slides left.
+    function positionPop() {
+      const rect = trigger.getBoundingClientRect();
+      const margin = 8;
+      const viewportH = window.innerHeight;
+      const viewportW = window.innerWidth;
+
+      // Width: at least as wide as the trigger, never wider than the viewport.
+      const minW = Math.max(rect.width, 280);
+      const w = Math.min(minW, viewportW - margin * 2);
+      pop.style.width = w + 'px';
+
+      // Horizontal: align with trigger's left, but slide left if overflowing.
+      let left = rect.left;
+      if (left + w > viewportW - margin) left = viewportW - w - margin;
+      if (left < margin) left = margin;
+      pop.style.left = left + 'px';
+
+      // Vertical: prefer below, flip above if no room.
+      const spaceBelow = viewportH - rect.bottom - margin - 8;
+      const spaceAbove = rect.top - margin - 8;
+      const desiredH = Math.min(420, Math.max(spaceBelow, spaceAbove));
+
+      if (spaceBelow >= 200 || spaceBelow >= spaceAbove) {
+        pop.style.top = (rect.bottom + 6) + 'px';
+        pop.style.bottom = '';
+        pop.style.maxHeight = Math.min(420, spaceBelow) + 'px';
+        pop.style.transformOrigin = 'top center';
+      } else {
+        pop.style.bottom = (viewportH - rect.top + 6) + 'px';
+        pop.style.top = '';
+        pop.style.maxHeight = Math.min(420, spaceAbove) + 'px';
+        pop.style.transformOrigin = 'bottom center';
+      }
     }
 
     function setSelected(code, { silent } = {}) {
