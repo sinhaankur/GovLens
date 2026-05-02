@@ -305,6 +305,110 @@ Update these in the repo:
 
 ---
 
+# Updating GovLens after it's published
+
+You'll iterate after launch — bug fixes, new features, polish. Here's the full update workflow.
+
+## Two kinds of update
+
+| Update type | Needs version bump? | Re-review needed? |
+|---|---|---|
+| Code changes (any `.js`, `.css`, `.html`, `manifest.json`, `icons/*`, etc.) | ✅ Yes | ✅ Yes (1–3 days typical) |
+| Listing-only edits (description, screenshots, support URL, privacy policy URL) | ❌ No | ✅ Yes (faster — often hours) |
+| Both at once | ✅ Yes | ✅ Yes (1–3 days) |
+
+## Workflow A — code change
+
+### 1. Bump the version
+Open `govlens-extension/manifest.json` and increment `"version"`.
+
+```
+"version": "2.1.2"  →  "2.1.3"   (bug fix or tiny tweak)
+"version": "2.1.2"  →  "2.2.0"   (new feature)
+"version": "2.1.2"  →  "3.0.0"   (major rewrite or breaking change)
+```
+
+Versions must be strictly higher than what's live. Chrome compares numerically — `2.1.10` is higher than `2.1.9`. Don't go backwards.
+
+### 2. Rebuild the zip
+
+```bash
+cd govlens-extension
+rm -f ../submission/govlens-v*.zip
+zip -r ../submission/govlens-v<NEW>.zip . -x "*.DS_Store" -x "*.git*"
+```
+
+Replace `<NEW>` with the new version number, e.g. `govlens-v2.1.3.zip`.
+
+### 3. Quick verify
+
+```bash
+unzip -p submission/govlens-v<NEW>.zip manifest.json | grep version
+```
+
+Should show the new version, not the old one.
+
+### 4. Upload via the dashboard
+
+Dev Console → click your **GovLens** item → **Package** tab on the left → **Upload new package** → drop in the new zip.
+
+Wait for it to parse. Verify the version shown is the new one.
+
+### 5. Save & submit
+
+Click **Save Draft** → click **Submit for Review**.
+
+That's it. The store listing fields (description, screenshots, justifications, privacy policy) are remembered — you don't re-fill them unless you want to change them.
+
+### 6. Tag the release in git
+
+```bash
+git tag -a v<NEW> -m "Release v<NEW>: <one-line summary of what changed>"
+git push origin v<NEW>
+```
+
+## Workflow B — listing-only edit (no code change)
+
+If you're just swapping screenshots, fixing a typo in the description, or updating the support URL — no zip needed. No version bump.
+
+1. Dev Console → GovLens item → **Store Listing** (or **Privacy practices**) tab
+2. Edit the field
+3. Save Draft → Submit for Review
+
+## What users see when an update ships
+
+- **Chrome auto-updates** every installed extension roughly every 5 hours, so most users get your update within a day of approval. No action on their part.
+- **Side panel may need to be reopened** for the new code to take effect on tabs that were already open at update time. Closed-and-reopened tabs always get the latest.
+- **Old `chrome.storage.local` data persists** across updates. So users keep their saved preferences, score history, recent languages, and API key. Don't break the storage schema; add fields, don't remove them.
+
+## If your update breaks something in production
+
+1. **Bump the version up, not back.** You can't roll back to a lower version on the Web Store. To "rollback v2.1.5", you ship v2.1.6 with the v2.1.4 code.
+2. **Watch the reviews tab** in the dashboard for the first 48h after a major update. New 1-star reviews with the same complaint = likely regression.
+3. **Test on at least one real gov site** before submitting (use `SMOKE_TEST.md` as a checklist).
+
+## Best practices
+
+- **One feature per minor version.** Easier to bisect when something breaks.
+- **Keep updates small and frequent.** Small updates clear review faster than big ones (reviewers can scan them in minutes).
+- **Avoid bumping `host_permissions`** unless you really need to. Adding a new TLD to `host_permissions` triggers a more thorough review and may re-prompt every existing user.
+- **Don't change `manifest_version`** unless you mean to migrate (e.g. MV3 → MV4 someday).
+- **Don't ship the same code with a higher version number.** Reviewers may flag it as deceptive.
+- **Read the rejection email carefully** if you get one — Google's reviewers always say *which field* and *what specifically* failed. Most rejections are one-field fixes.
+
+## Versioning convention I'd recommend
+
+```
+2.1.0  ← initial Web Store release
+2.1.1  ← bug fix (picker overlay)
+2.1.2  ← bug fix + small UX polish
+2.2.0  ← first new feature post-launch
+2.2.1  ← bug fix on that feature
+3.0.0  ← major rewrite (e.g. shadow-DOM translation overlay)
+```
+
+---
+
 # Quick reference
 
 **The current zip:** `submission/govlens-v2.1.2.zip`
