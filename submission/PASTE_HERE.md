@@ -16,6 +16,7 @@ Every field from the form you sent, with exact text to copy. Files in this folde
 | `screenshot-2-navigate.png` | **Screenshots** slot 2 |
 | `screenshot-3-search.png` | **Screenshots** slot 3 |
 | `promo-tile-440x280.png` | **Small promo tile** (440×280) |
+| `marquee-1400x560.png` | **Marquee promo tile** (1400×560) |
 
 ---
 
@@ -88,7 +89,7 @@ Not affiliated with any government — GovLens is an independent project.
 | **Screenshots** slot 2 | `screenshot-2-navigate.png` |
 | **Screenshots** slot 3 | `screenshot-3-search.png` |
 | **Small promo tile** (440×280) | `promo-tile-440x280.png` |
-| **Marquee promo tile** (1400×560) | *Skip — optional* |
+| **Marquee promo tile** (1400×560) | `marquee-1400x560.png` |
 | **Global promo video** | *Skip — optional* |
 
 ---
