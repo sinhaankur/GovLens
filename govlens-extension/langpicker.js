@@ -217,6 +217,12 @@
     const search  = root.querySelector('.lp-search');
     const list    = root.querySelector('.lp-list');
 
+    // ── Portal the popover to <body> so it can't be clipped by any ancestor's
+    // transform / filter / contain (CSS containing-block rules for fixed
+    // positioning). Animated cards in the panel set transform after their
+    // entrance animation, which would otherwise trap the popover inside.
+    document.body.appendChild(pop);
+
     let activeIndex = -1; // index into the currently-rendered .lp-option items
     const dflt = root.dataset.default || hidden.value || 'en';
 
@@ -224,7 +230,10 @@
 
     trigger.addEventListener('click', () => togglePop());
     document.addEventListener('mousedown', (e) => {
-      if (!root.contains(e.target)) closePop();
+      // Popover lives at <body> root after portal — must check both root
+      // (trigger lives in root) AND pop separately. Clicking inside either
+      // should keep it open.
+      if (!root.contains(e.target) && !pop.contains(e.target)) closePop();
     });
     search.addEventListener('input', () => render(search.value));
     search.addEventListener('keydown', onSearchKey);
