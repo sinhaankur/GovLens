@@ -1,0 +1,89 @@
+name: 🐞 Bug report
+description: Something is broken in GovLens
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug. The most useful bug reports include the **gov-page URL** where it happens — that's almost always how we reproduce.
+
+  - type: input
+    id: gov-url
+    attributes:
+      label: Government site URL
+      description: The exact URL where you saw the bug
+      placeholder: "https://www.incometax.gov.in/iec/foportal/help/individual"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, and what did GovLens do that you didn't expect?
+      placeholder: |
+        1. Opened the page above
+        2. Clicked the GL toolbar icon
+        3. Side panel opened, but the Navigate tab showed 0 sections even though the page has 5 headings
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: "Navigate tab should list all 5 headings as clickable rows"
+    validations:
+      required: true
+
+  - type: input
+    id: chrome-version
+    attributes:
+      label: Chrome version
+      description: chrome://version → Google Chrome
+      placeholder: "138.0.6789.123"
+    validations:
+      required: true
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: GovLens version
+      description: chrome://extensions → GovLens → version field
+      placeholder: "2.1.2"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "macOS 14.5 / Windows 11 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: DevTools console errors
+      description: Open DevTools (F12) → Console tab → copy any red errors that appeared while reproducing
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Drag & drop images here. Most useful — the side panel + the gov page side by side.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Sanity checks
+      options:
+        - label: I confirmed this happens with all extensions other than GovLens disabled
+          required: false
+        - label: I tried in an incognito window with GovLens enabled (chrome://extensions → Details → "Allow in Incognito")
+          required: false
+        - label: I searched existing issues and didn't find a duplicate
+          required: true

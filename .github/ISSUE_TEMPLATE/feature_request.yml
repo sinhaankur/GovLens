@@ -1,0 +1,62 @@
+name: 💡 Feature request
+description: Suggest a new feature or improvement
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The strongest feature requests start with a real frustration ("I tried to do X and Y went wrong"), not a generic "would be nice if". Concrete > theoretical.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: What were you doing on a gov site that GovLens didn't help with?
+      placeholder: |
+        I was applying for a passport on passportindia.gov.in. The form had 30 fields across 4 pages. Halfway through page 3, the session timed out and I lost everything. GovLens's form auto-save restored most of it, but it couldn't restore page-2 fields because I had already navigated away.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What would you like GovLens to do?
+      placeholder: |
+        Save form drafts across multi-page form flows. When the user navigates from page 2 to page 3 of the same form, the page-2 values should still be in localStorage — and the restore banner on page 2 should offer to refill them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: What else could solve this problem? Why is this the right approach?
+      placeholder: "Manually copy each field to a notes app — too tedious for 30 fields."
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Which area of GovLens?
+      multiple: true
+      options:
+        - Translation
+        - Navigation map
+        - Search & jump
+        - Score
+        - Form auto-save
+        - Jargon explainer
+        - Language picker
+        - New language / region
+        - Privacy / security
+        - Other
+
+  - type: textarea
+    id: gov-context
+    attributes:
+      label: Specific gov sites where this matters
+      description: List the URLs where this feature would help. The more concrete, the better.
+      placeholder: |
+        - passportindia.gov.in (multi-page form)
+        - upsconline.nic.in (multi-step exam application)
+        - incometax.gov.in (ITR filing)

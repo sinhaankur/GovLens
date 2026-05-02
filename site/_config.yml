@@ -1,7 +1,22 @@
-title: GovLens
-description: Read any Indian government portal in your language. Universal translation, navigation map, cross-language search.
+title: GovLens — Universal Government Portal Reader
+description: Read any government portal in your language. Universal translation, navigation map, cross-language search. Works in 25+ countries with 100+ languages.
+url: https://sinhaankur.github.io
+baseurl: /GovLens
+author: Ankur Sinha
+github_username: sinhaankur
+repository: sinhaankur/GovLens
+
 theme: null
 plugins: []
+
 exclude:
   - README.md
   - node_modules
+  - .git
+  - .github
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      og_image: /assets/store/marquee-1400x560.png

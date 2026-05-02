@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussion
+    url: https://github.com/sinhaankur/GovLens/discussions
+    about: Open-ended questions, ideas, or feedback go here instead of issues.
+  - name: 🔒 Report a security issue
+    url: https://github.com/sinhaankur/GovLens/security/advisories/new
+    about: Security vulnerabilities — please don't open a public issue.
+  - name: 📚 Read the user guide
+    url: https://sinhaankur.github.io/GovLens/docs.html
+    about: How-to walkthrough before filing.
